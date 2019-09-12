@@ -1,0 +1,273 @@
+//@import url("https://rsms.me/inter/inter.css");
+//@import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
+
+$colors: (
+  black: black,
+  light: rgb(224, 224, 224),
+);
+
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+
+@function stroke($stroke, $color) {
+  $shadow: ();
+  $from: $stroke * -1;
+  @for $i from $from through $stroke {
+    @for $j from $from through $stroke {
+      $shadow: append($shadow, $i * 1px $j * 1px 0 $color, comma);
+    }
+  }
+  @return $shadow;
+}
+
+@mixin stroke($stroke, $color) {
+  text-shadow: stroke($stroke, $color);
+}
+
+html,
+body {
+  font-family: "Inter", sans-serif;
+  background-color: color(light);
+  color: color(black);
+}
+
+/*
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}
+*/
+.main {
+  margin: 2em 0;
+  font-size: 5em;
+  font-family: "Archiv Grotesk Trial";
+  @include stroke(1, black);
+  color: color(light);
+}
+.fig {
+  height: 20px;
+  width: 20px;
+  background-color: color(black);
+  position: absolute;
+  bottom: 30%;
+  right: 10%;
+}
+
+.particle {
+  height: 10px;
+  width: 10px;
+  background-color: color(black);
+  position: absolute;
+  bottom: 30%;
+  left: 10%;
+}
+
+.bg {
+  clip-path: polygon(0 0, 100% 0%, 35% 100%, 0% 100%);
+  background-color: white;
+  z-index: -1;
+}
+
+.main-area {
+  display: flex;
+  flex-direction: column;
+
+  //grid-auto-flow: row;
+}
+
+.hero {
+  height: 90vh;
+  font-family: "Monument Extended";
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 5em;
+  color: black;
+  letter-spacing: 0.1em;
+
+  #lastname {
+    color: color(light);
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+      1px 1px 0 #000;
+  }
+
+  .img-wrapper {
+    //position: relative;
+    width: 700px ;
+    height: 500px;
+    
+    //transform: rotate(-90deg);
+
+    .img-main {
+    position: absolute;
+      width: 700px;
+      height: 500px;
+      object-fit: cover;
+      overflow: hidden;
+      right: 0;
+    }
+  }
+}
+
+.area-block {
+  //height: 600px;
+  //position: relative;
+  //background-color: rgb(94, 221, 204);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 15em 0;
+  //padding: 2em;
+  .area-info {
+    position: absolute;
+    top: 3.5em;
+    left: 3em;
+    //font-weight: 200;
+    font-size: 2em;
+    font-family: "Rubik";
+  }
+
+  h2 {
+    font-weight: 400;
+    font-size: 3em;
+    color: black;
+
+    //text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    transition: 0.5s;
+    font-family: "Monument Extended";
+    margin: -0.5em 0;
+    //text-transform: uppercase;
+    font-size: 4em;
+    //position: sticky;
+    // top: 20%;
+    //left: 0;
+  }
+
+  .outline {
+    color: color(light);
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+      1px 1px 0 #000;
+    opacity: 0.1;
+    //top: 30%;
+  }
+
+  h2:hover {
+    color: black;
+    text-shadow: none;
+    //font-family: "Circular Std"
+  }
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  //padding: 2em 0;
+  position: sticky;
+  top: 0;
+  left: 0;
+
+  span {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    color: color(black);
+    text-transform: uppercase;
+  }
+
+  span:before,
+  span:after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 1px;
+    top: 50%;
+    margin-top: -0.5px;
+    background: color(black);
+  }
+
+  span:before {
+    left: -2.5px;
+  }
+  span:after {
+    right: 2.5px;
+    background: color(black);
+    transition: width 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  span:hover:before {
+    background: color(black);
+    width: 100%;
+    transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  span:hover:after {
+    background: transparent;
+    width: 100%;
+    transition: 0s;
+  }
+}
+
+.nav-right {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 30%;
+}
+
+#skills {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h3 {
+    font-size: 0.8em;
+    margin-bottom: .1em;
+    font-family: "Monument Extended";
+  }
+}
+
+h3 {
+    font-size: 0.6em;
+    margin-bottom: .1em;
+    font-family: "Monument Extended";
+  }
+
+#education {
+  display: grid;
+  grid-template-columns: 30% 60% 10%;
+  
+  width: 100%;
+    padding: .5em 0;
+
+
+  h4 {
+      font-size: .6em;
+      font-weight: 200;
+     letter-spacing: .5px;
+     // text-transform: uppercase;
+      //color: rgb(66, 66, 66);
+      font-family: "Archiv Grotesk Trial";
+      font-family: "Rubik Light";
+  }
+
+  h5 {
+    font-size: .5em;
+    //color: rgb(66, 66, 66);
+    font-family: "Archiv Grotesk Trial"
+
+  }
+
+  
+}
+
