@@ -10,8 +10,11 @@ import SEO from "../components/seo"
 import "antd/dist/antd.css"
 import "../styles/style.scss"
 
+import node_logo from "../images/node.png"
+import firebase_logo from "../images/firebase.png"
 import spg from "../images/spg.png"
 import pinewood from "../images/pinewood.png"
+import react_logo from  "../images/react.svg"
 
 class IndexPage extends React.Component {
   constructor(props) {
@@ -39,38 +42,46 @@ class IndexPage extends React.Component {
       )
     })
 
-    let renderEduc = education.map(doc => {
+    let renderEduc = education_en.map(doc => {
       return (
         <div id="education">
-          <div>
+          <div id="year-desc">
             <h3>
               {doc.año_init} — {doc.año_fin}
             </h3>
-            <h4>Tegucigalpa</h4>
+            <h5>Tegucigalpa</h5>
           </div>
           <div>
             <h2>{doc.name}</h2>
             <h3>{doc.insti}</h3>
             <h4>{doc.descripcion}</h4>
           </div>
+
           <h3 className="indice">{doc.indice}%</h3>
         </div>
       )
     })
 
-    let renderSoft = softskills.map(doc => {
+    let renderSoft = softskills_en.map(doc => {
       return <h3>{doc}</h3>
     })
 
     let renderTechnologies = techs2.map(doc => {
-      return <h3>{doc.name}</h3>
+      return (
+        <div>
+        <h3>{doc.name}</h3>
+        <img className="tech-img" src={doc.img}></img>
+        </div>
+      )
+     
+      
     })
 
-    let renderGeneral = general.map(doc => {
+    let renderGeneral = general_en.map(doc => {
       return (
         <div>
           <span className="s3">{doc.name}</span>
-          <h3>{doc.info}</h3>
+          <h3 >{doc.info}</h3>
         </div>
       )
     })
@@ -79,9 +90,8 @@ class IndexPage extends React.Component {
       if (i % 2 == 0) {
         return (
           <div className="port-item">
-            <div>
-              <img className="port-img" src={doc.image}></img>
-            </div>
+            <img className="port-img" src={doc.image}></img>
+
             <div className="port-info">
               <span className="s3">{doc.category}</span>
               <span className="outline">{doc.project}</span>
@@ -97,9 +107,8 @@ class IndexPage extends React.Component {
               <span className="outline">{doc.project}</span>
               <h4>{doc.description}</h4>
             </div>
-            <div>
-              <img className="port-img" src={doc.image}></img>
-            </div>
+
+            <img className="port-img" src={doc.image}></img>
           </div>
         )
       }
@@ -110,10 +119,11 @@ class IndexPage extends React.Component {
 
         <div className="navbar">
           <div className="nav-right">
-            <a href="#ed">Educacion</a>
-            <span>Habilidades</span>
-            <span>Perfil</span>
-            <span>Contacto</span>
+            <a href="#educ">Education</a>
+            <a href="#skills">Skills</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#profile">Profile</a>
+            <a href="#contacto">Contact</a>
           </div>
         </div>
 
@@ -135,12 +145,12 @@ class IndexPage extends React.Component {
               <span className="name">Full-Stack Developer</span>
             </div>
           </div>
-          <div className="block light" id="ed">
-            <Subheading name="Educación" number="01"></Subheading>
+          <div className="block light" id="educ">
+            <Subheading name="Education" number="01"></Subheading>
             {renderEduc}
           </div>
           <div className="block prim" id="skills">
-            <Subheading name="Habilidades" number="02"></Subheading>
+            <Subheading name="Skills" number="02"></Subheading>
             <div className="col-block">
               <div>
                 <span className="s2">Lenguajes</span>
@@ -151,9 +161,11 @@ class IndexPage extends React.Component {
                 <div id="softs"> {renderSoft}</div>
               </div>
             </div>
-            <div className="row-block">
-              <span className="s2">Tecnologías y Herramientas</span>
-              <div id="techs">{renderTechnologies}</div>
+            <div className="col-block full-row">
+              <div>
+                <span className="s2">Tecnologías y Herramientas</span>
+                <div id="techs">{renderTechnologies}</div>
+              </div>
             </div>
           </div>
 
@@ -161,8 +173,8 @@ class IndexPage extends React.Component {
             <Subheading name="Portfolio" number="03"></Subheading>
             {renderPorfolio}
           </div>
-          <div className="block prim">
-            <Subheading name="Perfil" number="04"></Subheading>
+          <div className="block prim" id="profile">
+            <Subheading name="Profile" number="04"></Subheading>
             <div className="col-block25">
               <div className="light" id="general">
                 {renderGeneral}
@@ -176,8 +188,8 @@ class IndexPage extends React.Component {
             </div>
           </div>
 
-          <div className="block light">
-            <Subheading name="Contacto" number="05"></Subheading>
+          <div className="block light" id="contacto">
+            <Subheading name="Contact" number="05"></Subheading>
             <div id="contact">
               <div className="input">
                 <span className="s3">Nombre</span>
@@ -188,7 +200,7 @@ class IndexPage extends React.Component {
                 <span className="s3">Correo</span>
                 <input />
               </div>
-              <div className="input">
+              <div className="input textarea">
                 <span className="s3">¿En que te puedo ayudar?</span>
                 <textarea rows="5" />
               </div>
@@ -258,47 +270,43 @@ const techs = [
 const techs2 = [
   {
     name: "Node.js",
-    img: "",
+    img: node_logo,
   },
   {
     name: "React JS",
-    img: "",
+    img: react_logo,
   },
   {
     name: "React Native",
-    img: "",
+    
   },
   {
     name: "Meteor",
-    img: "",
+    
   },
-  {
-    name: "Node.js",
-    img: "",
-  },
+
   {
     name: "Angular",
-    img: "",
+   
   },
   {
     name: "MongoDB",
-    img: "",
+    
   },
   {
     name: "Firebase",
-    img: "",
+    img: firebase_logo,
   },
   {
     name: "SQL Server",
-    img: "",
+
   },
   {
     name: "Hadoop",
-    img: "",
+
   },
   {
     name: "Unreal Engine",
-    img: "",
   },
 ]
 
@@ -307,6 +315,13 @@ const softskills = [
   "Trabajo en equipo",
   "Determinación",
   "Responsabilidad",
+]
+
+const softskills_en = [
+  "Integrity",
+  "Teamwork",
+  "Determination",
+  "Responsibility",
 ]
 
 const education = [
@@ -335,6 +350,32 @@ const education = [
   },
 ]
 
+const education_en = [
+  {
+    name: "Elementary School Education ",
+    insti: "Elvel School",
+    año_init: "2004",
+    año_fin: "2010",
+    indice: "97.6",
+  },
+  {
+    name: "High School Degree",
+    insti: "Elvel School",
+    año_init: "2010",
+    año_fin: "2015",
+    indice: "98.3",
+    descripcion: "Salutatorian: 2º in graduating class",
+  },
+  {
+    name: "Bachelor of Software Engineering (B.SE.)",
+    insti: "Universidad Tecnologica Centroamericana",
+    año_init: "2015",
+    año_fin: "2020",
+    indice: "90.2",
+    descripcion: "Highest Score: Intermediate Computing 2018",
+  },
+]
+
 const general = [
   {
     name: "Nombre",
@@ -353,6 +394,24 @@ const general = [
   },
 ]
 
+const general_en = [
+  {
+    name: "Name",
+    info: "Calvin Espinoza",
+  },
+  {
+    name: "Age",
+    info: "21 years old",
+  },
+  {
+    name: "Born in",
+    info: "Tegucigalpa, Honduras",
+  },
+  {
+    name: "Social Network",
+  },
+]
+
 const portfolio = [
   {
     project: "Sprouting Productive Gear",
@@ -363,19 +422,22 @@ const portfolio = [
   },
   {
     project: "Morazán Vigila",
-    description: " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Egestas sed tempus urna et pharetra pharetra massa mass ultricies. Mi ipsum faucibus vitae aliquet.",
+    description:
+      " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Egestas sed tempus urna et pharetra pharetra massa mass ultricies. Mi ipsum faucibus vitae aliquet.",
     category: "Development",
     image: spg,
   },
   {
     project: "Pinewood Cinema",
-    description: " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Egestas sed tempus urna et pharetra pharetra massa mass ultricies. Mi ipsum faucibus vitae aliquet.",
+    description:
+      " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Egestas sed tempus urna et pharetra pharetra massa mass ultricies. Mi ipsum faucibus vitae aliquet.",
     category: "Prototype & Design",
     image: pinewood,
   },
   {
     project: "anting",
-    description: " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Egestas sed tempus urna et pharetra pharetra massa mass ultricies. Mi ipsum faucibus vitae aliquet.",
+    description:
+      " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Egestas sed tempus urna et pharetra pharetra massa mass ultricies. Mi ipsum faucibus vitae aliquet.",
     category: "Prototype & Design",
     image: spg,
   },
