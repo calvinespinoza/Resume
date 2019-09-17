@@ -70,7 +70,7 @@ class IndexPage extends React.Component {
       return (
         <div>
         <h3>{doc.name}</h3>
-        <img className="tech-img" src={doc.img}></img>
+        {/*<img className="tech-img" src={doc.img}></img>*/}
         </div>
       )
      
