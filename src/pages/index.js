@@ -157,17 +157,17 @@ class IndexPage extends React.Component {
             <Subheading name="Skills" number="02"></Subheading>
             <div className="col-block">
               <div>
-                <span className="s2">Lenguajes</span>
+                <span className="s2">Programming Expertise</span>
                 {renderSkills}
               </div>
               <div className="light" id="softskills">
-                <span className="s2">Habilidades Blandas</span>
+                <span className="s2">Soft Skills</span>
                 <div id="softs"> {renderSoft}</div>
               </div>
             </div>
             <div className="col-block full-row">
               <div>
-                <span className="s2">Tecnologías y Herramientas</span>
+                <span className="s2">Tools & Technologies</span>
                 <div id="techs">{renderTechnologies}</div>
               </div>
             </div>
