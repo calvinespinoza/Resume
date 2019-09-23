@@ -18,6 +18,7 @@ import spg from "../images/spg.png"
 import pinewood from "../images/pinewood.png"
 import anting from "../images/anting.png"
 import react_logo from  "../images/react.svg"
+import morazan from "../images/morazan.png"
 
 class IndexPage extends React.Component {
   constructor(props) {
@@ -420,7 +421,7 @@ const portfolio = [
   {
     project: "Sprouting Productive Gear",
     description:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Egestas sed tempus urna et pharetra pharetra massa mass ultricies. Mi ipsum faucibus vitae aliquet.",
+      "SPG is a crowdfunding platform that allows landowners in Central America to connect with investors who are willing to fund these projects through the application.",
     category: "Development",
     image: spg,
   },
@@ -429,7 +430,7 @@ const portfolio = [
     description:
       "An application currently in development for iOS and Android through React Native. Allows users to create and visualize real-time reports on crimes, fires, car accidents, etc. in Tegucigalpa, Honduras",
     category: "Development",
-    image: spg,
+    image: morazan,
   },
   {
     project: "Pinewood Cinema",
@@ -441,7 +442,7 @@ const portfolio = [
   {
     project: "anting",
     description:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Egestas sed tempus urna et pharetra pharetra massa mass ultricies. Mi ipsum faucibus vitae aliquet.",
+      "Anting is an online credit marketplace, where investors back creditworthy borrowers in exchange for interest income. A promising idea conceived and presented by college students through this prototype.",
     category: "Prototype & Design",
     image: anting,
   },

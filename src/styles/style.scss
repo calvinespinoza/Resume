@@ -504,7 +504,11 @@ body {
   #general {
     padding: 2em;
     border-radius: 10px;
-    min-width: 250px;
+    min-width: 400px;
+
+    @include breakpoint(md) {
+      min-width: 250px;
+    }
   }
   h3 {
     font-weight: 700;
@@ -619,6 +623,11 @@ body {
 
     h4 {
       color: color(text);
+      font-size: 1.3em;
+
+      @include breakpoint(md) {
+        font-size: 1em;
+      }
     }
     .outline {
       padding: 0.1em 0;
