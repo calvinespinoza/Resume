@@ -12,8 +12,11 @@ import "../styles/style.scss"
 
 import node_logo from "../images/node.png"
 import firebase_logo from "../images/firebase.png"
+import sqls_logo from "../images/sql-server.svg"
+import fireb from "../images/fireb.png"
 import spg from "../images/spg.png"
 import pinewood from "../images/pinewood.png"
+import anting from "../images/anting.png"
 import react_logo from  "../images/react.svg"
 
 class IndexPage extends React.Component {
@@ -192,16 +195,16 @@ class IndexPage extends React.Component {
             <Subheading name="Contact" number="05"></Subheading>
             <div id="contact">
               <div className="input">
-                <span className="s3">Nombre</span>
+                <span className="s3">Name</span>
                 <input />
               </div>
 
               <div className="input">
-                <span className="s3">Correo</span>
+                <span className="s3">Email</span>
                 <input />
               </div>
               <div className="input textarea">
-                <span className="s3">¿En que te puedo ayudar?</span>
+                <span className="s3">What can I help you with?</span>
                 <textarea rows="5" />
               </div>
             </div>
@@ -295,10 +298,11 @@ const techs2 = [
   },
   {
     name: "Firebase",
-    img: firebase_logo,
+    img: fireb,
   },
   {
     name: "SQL Server",
+    img: sqls_logo,
 
   },
   {
@@ -423,14 +427,14 @@ const portfolio = [
   {
     project: "Morazán Vigila",
     description:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Egestas sed tempus urna et pharetra pharetra massa mass ultricies. Mi ipsum faucibus vitae aliquet.",
+      "An application currently in development for iOS and Android through React Native. Allows users to create and visualize real-time reports on crimes, fires, car accidents, etc. in Tegucigalpa, Honduras",
     category: "Development",
     image: spg,
   },
   {
     project: "Pinewood Cinema",
     description:
-      " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Egestas sed tempus urna et pharetra pharetra massa mass ultricies. Mi ipsum faucibus vitae aliquet.",
+      "Full-fledged prototype for a companion application for a local drive-in cinema. Visualizes the user experience for ticket purchasing and food delivery.",
     category: "Prototype & Design",
     image: pinewood,
   },
@@ -439,7 +443,7 @@ const portfolio = [
     description:
       " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Egestas sed tempus urna et pharetra pharetra massa mass ultricies. Mi ipsum faucibus vitae aliquet.",
     category: "Prototype & Design",
-    image: spg,
+    image: anting,
   },
 ]
 
