@@ -2,6 +2,8 @@ import React from "react"
 import { Link } from "gatsby"
 import anime from "animejs"
 import { Progress, Timeline } from "antd"
+import ScrollAnimation from "react-animate-on-scroll"
+import "animate.css/animate.min.css"
 
 import Layout from "../components/layout"
 import Image from "../components/image"
@@ -17,25 +19,64 @@ import fireb from "../images/fireb.png"
 import spg from "../images/spg.png"
 import pinewood from "../images/pinewood.png"
 import anting from "../images/anting.png"
-import react_logo from  "../images/react.svg"
+import react_logo from "../images/react.svg"
 import morazan from "../images/morazan.png"
 
 class IndexPage extends React.Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      elements: [],
+      windowHeight: 0,
+      showMenu: false,
+    }
+
+    this.showNav = this.showNav.bind(this)
+    this.hideNav = this.hideNav.bind(this)
+  }
+
+  showNav() {
+    this.setState({
+      showMenu: true,
+    })
+  }
+
+  hideNav() {
+    this.setState({
+      showMenu: false,
+    })
   }
 
   componentDidMount() {}
 
   componentDidUpdate() {}
+
   //const IndexPage = () => (
   render() {
+    let renderMenus = menus.map((doc, i) => {
+      return (
+        <ScrollAnimation animateIn="fadeInUp" delay={i * 100}>
+          <span>{doc}</span>
+        </ScrollAnimation>
+      )
+    })
     let renderSkills = data.map(doc => {
       let circles = []
       let limit = doc.percent
       for (let i = 0; i < 10; i++) {
-        if (i < limit) circles.push(<div className="skill-circle"></div>)
-        else circles.push(<div className="skill-circle clear"></div>)
+        if (i < limit)
+          circles.push(
+            <ScrollAnimation animateIn="fadeIn" delay={i * 100}>
+              <div className="skill-circle"></div>
+            </ScrollAnimation>
+          )
+        else
+          circles.push(
+            <ScrollAnimation animateIn="fadeIn" delay={i * 100}>
+              <div className="skill-circle clear"></div>
+            </ScrollAnimation>
+          )
       }
 
       return (
@@ -73,19 +114,17 @@ class IndexPage extends React.Component {
     let renderTechnologies = techs2.map(doc => {
       return (
         <div>
-        <h3>{doc.name}</h3>
-        {/*<img className="tech-img" src={doc.img}></img>*/}
+          <h3>{doc.name}</h3>
+          {/*<img className="tech-img" src={doc.img}></img>*/}
         </div>
       )
-     
-      
     })
 
     let renderGeneral = general_en.map(doc => {
       return (
         <div>
           <span className="s3">{doc.name}</span>
-          <h3 >{doc.info}</h3>
+          <h3>{doc.info}</h3>
         </div>
       )
     })
@@ -94,12 +133,31 @@ class IndexPage extends React.Component {
       if (i % 2 == 0) {
         return (
           <div className="port-item">
-            <img className="port-img" src={doc.image}></img>
-
+            <ScrollAnimation animateIn="fadeInLeft" animateOnce={true}>
+              <img className="port-img" src={doc.image}></img>
+            </ScrollAnimation>
             <div className="port-info">
-              <span className="s3">{doc.category}</span>
-              <span className="outline">{doc.project}</span>
-              <h4>{doc.description}</h4>
+              <ScrollAnimation
+                animateIn="fadeInUp"
+                delay={200}
+                animateOnce={true}
+              >
+                <span className="s3">{doc.category}</span>
+              </ScrollAnimation>
+              <ScrollAnimation
+                animateIn="fadeInUp"
+                delay={400}
+                animateOnce={true}
+              >
+                <span className="outline">{doc.project}</span>
+              </ScrollAnimation>
+              <ScrollAnimation
+                animateIn="fadeInUp"
+                delay={600}
+                animateOnce={true}
+              >
+                <h4>{doc.description}</h4>
+              </ScrollAnimation>
             </div>
           </div>
         )
@@ -107,12 +165,32 @@ class IndexPage extends React.Component {
         return (
           <div className="port-item left">
             <div className="port-info">
-              <span className="s3">{doc.category}</span>
-              <span className="outline">{doc.project}</span>
-              <h4>{doc.description}</h4>
+              <ScrollAnimation
+                animateIn="fadeInUp"
+                delay={200}
+                animateOnce={true}
+              >
+                <span className="s3">{doc.category}</span>
+              </ScrollAnimation>
+              <ScrollAnimation
+                animateIn="fadeInUp"
+                delay={400}
+                animateOnce={true}
+              >
+                <span className="outline">{doc.project}</span>
+              </ScrollAnimation>
+              <ScrollAnimation
+                animateIn="fadeInUp"
+                delay={600}
+                animateOnce={true}
+              >
+                <h4>{doc.description}</h4>
+              </ScrollAnimation>
             </div>
 
-            <img className="port-img" src={doc.image}></img>
+            <ScrollAnimation animateIn="fadeInRight" animateOnce={true}>
+              <img className="port-img" src={doc.image}></img>
+            </ScrollAnimation>
           </div>
         )
       }
@@ -121,12 +199,14 @@ class IndexPage extends React.Component {
       <Layout>
         <SEO title="Home" />
 
+        <button className="nav-bt" onClick={this.showNav}></button>
+
         <div className="navbar">
           <div className="nav-right">
             <a href="#educ">Education</a>
             <a href="#skills">Skills</a>
             <a href="#portfolio">Portfolio</a>
-            <a href="#profile">Profile</a>
+            <a href="#profile">About</a>
             <a href="#contacto">Contact</a>
           </div>
         </div>
@@ -134,20 +214,32 @@ class IndexPage extends React.Component {
         <div className="main-area">
           <div className="hero">
             <div className="welcome">
-              <span className="intro">Hi, I'm</span>
-              <div className="name">
-                <strong>Calvin</strong>
-                <strong>Espinoza</strong>
-              </div>
-              <div className="description">
-                <p>I’m a software developer currently based</p>
-                <p>in Tegucigalpa, Honduras</p>
-              </div>
+              <span className="intro">I am</span>
+              <ScrollAnimation animateIn="fadeInUp">
+                <div className="name">
+                  <strong>Calvin</strong>
+                  <strong>Espinoza</strong>
+                </div>{" "}
+              </ScrollAnimation>
+
+              <ScrollAnimation animateIn="fadeInUp" delay={500}>
+                <div className="description">
+                  <p>A software developer currently based</p>
+                  <p>in Tegucigalpa, Honduras</p>
+                </div>
+              </ScrollAnimation>
             </div>
-            <div className="profession">
-              <span className="name">UI/UX Developer</span>
-              <span className="name">Full-Stack Developer</span>
-            </div>
+
+            <ScrollAnimation
+              className="profession"
+              animateIn="fadeInUp"
+              delay={1000}
+            >
+              <div className="prof-div">
+                <span className="name">UI/UX Developer</span>
+                <span className="name">Full-Stack Developer</span>
+              </div>
+            </ScrollAnimation>
           </div>
           <div className="block light" id="educ">
             <Subheading name="Education" number="01"></Subheading>
@@ -178,7 +270,8 @@ class IndexPage extends React.Component {
             {renderPorfolio}
           </div>
           <div className="block prim" id="profile">
-            <Subheading name="Profile" number="04"></Subheading>
+            <Subheading name="About" number="04"></Subheading>
+
             <div className="col-block25">
               <div className="light" id="general">
                 {renderGeneral}
@@ -215,18 +308,35 @@ class IndexPage extends React.Component {
             </button>
           </div>
         </div>
+        {this.state.showMenu ? (
+          <div className="menu animated fadeInOut">
+            {renderMenus}
+            <button className="close-bt" onClick={this.hideNav}>
+              Close
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
       </Layout>
     )
   }
 }
 
+const menus = ["Home", "Education", "Skills", "Portfolio", "About", "Contact"]
+
 const Subheading = ({ name, number }) => {
   return (
-    <div>
+    <div className="hidden">
       <div className="sub">
-        <h1 className="backing">{number}</h1>
-        <h2 className="heading">{name}</h2>
+        <ScrollAnimation animateIn="fadeInLeft">
+          <h1 className="backing">{number}</h1>
+        </ScrollAnimation>
+        <ScrollAnimation animateIn="fadeInUp">
+          <h2 className="heading">{name}</h2>
+        </ScrollAnimation>
       </div>
+
       <div className="num-obj">
         <div className="number">{number}</div>
       </div>
@@ -282,20 +392,16 @@ const techs2 = [
   },
   {
     name: "React Native",
-    
   },
   {
     name: "Meteor",
-    
   },
 
   {
     name: "Angular",
-   
   },
   {
     name: "MongoDB",
-    
   },
   {
     name: "Firebase",
@@ -304,11 +410,9 @@ const techs2 = [
   {
     name: "SQL Server",
     img: sqls_logo,
-
   },
   {
     name: "Hadoop",
-
   },
   {
     name: "Unreal Engine",
