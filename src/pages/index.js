@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import anime from "animejs"
-import { Progress, Timeline } from "antd"
+import { Icon } from "antd"
 import ScrollAnimation from "react-animate-on-scroll"
 import "animate.css/animate.min.css"
 
@@ -56,7 +56,11 @@ class IndexPage extends React.Component {
   render() {
     let renderMenus = menus.map((doc, i) => {
       return (
-        <ScrollAnimation animateIn="fadeInUp" delay={i * 100}>
+        <ScrollAnimation
+          animateIn="fadeInUp"
+          animateOut="fadeOutUp"
+          delay={i * 100}
+        >
           <span>{doc}</span>
         </ScrollAnimation>
       )
@@ -87,23 +91,29 @@ class IndexPage extends React.Component {
       )
     })
 
-    let renderEduc = education_en.map(doc => {
+    let renderEduc = education_en.map((doc, i) => {
       return (
-        <div id="education">
-          <div id="year-desc">
-            <h3>
-              {doc.año_init} — {doc.año_fin}
-            </h3>
-            <h5>Tegucigalpa</h5>
-          </div>
-          <div>
-            <h2>{doc.name}</h2>
-            <h3>{doc.insti}</h3>
-            <h4>{doc.descripcion}</h4>
-          </div>
+        <ScrollAnimation
+          animateIn="fadeInUp"
+          delay={i * 50}
+          style={{ width: "100%" }}
+        >
+          <div id="education">
+            <div id="year-desc">
+              <h3>
+                {doc.año_init} — {doc.año_fin}
+              </h3>
+              <h5>Tegucigalpa</h5>
+            </div>
+            <div>
+              <h2>{doc.name}</h2>
+              <h3>{doc.insti}</h3>
+              <h4>{doc.descripcion}</h4>
+            </div>
 
-          <h3 className="indice">{doc.indice}%</h3>
-        </div>
+            <h3 className="indice">{doc.indice}%</h3>
+          </div>
+        </ScrollAnimation>
       )
     })
 
@@ -149,7 +159,7 @@ class IndexPage extends React.Component {
                 delay={400}
                 animateOnce={true}
               >
-                <span className="outline">{doc.project}</span>
+                <span className="port-title outline">{doc.project}</span>
               </ScrollAnimation>
               <ScrollAnimation
                 animateIn="fadeInUp"
@@ -177,7 +187,7 @@ class IndexPage extends React.Component {
                 delay={400}
                 animateOnce={true}
               >
-                <span className="outline">{doc.project}</span>
+                <span className="port-title outline">{doc.project}</span>
               </ScrollAnimation>
               <ScrollAnimation
                 animateIn="fadeInUp"
@@ -198,11 +208,30 @@ class IndexPage extends React.Component {
     return (
       <Layout>
         <SEO title="Home" />
-
+        {/*
         <button className="nav-bt" onClick={this.showNav}></button>
+*/}
 
+        <div className="navbar-sm">
+          <a className="navbar-name">Calvin</a>
+          {this.state.showMenu ? (
+            <Icon
+              className="animated fadeIn"
+              type="close-circle"
+              onClick={this.hideNav}
+            />
+          ) : (
+            <Icon
+              className="animated fadeIn"
+              type="menu"
+              onClick={this.showNav}
+            />
+          )}
+        </div>
         <div className="navbar">
-          <div className="nav-right">
+          <a className="navbar-name">Calvin</a>
+
+          <div className="navbar-area">
             <a href="#educ">Education</a>
             <a href="#skills">Skills</a>
             <a href="#portfolio">Portfolio</a>
@@ -211,15 +240,19 @@ class IndexPage extends React.Component {
           </div>
         </div>
 
+        {/*
+        <img className="graphic" src="https://bit.ly/2lu2k76"></img>
+*/}
+        <div className="graphic"></div>
         <div className="main-area">
+          <div className="num-obj">
+            <div className="number">00</div>
+          </div>
           <div className="hero">
             <div className="welcome">
-              <span className="intro">I am</span>
-              <ScrollAnimation animateIn="fadeInUp">
-                <div className="name">
-                  <strong>Calvin</strong>
-                  <strong>Espinoza</strong>
-                </div>{" "}
+              <ScrollAnimation animateIn="fadeInUp" className="intro">
+                <div>I am</div>
+                <div className="name">Calvin Espinoza.</div>
               </ScrollAnimation>
 
               <ScrollAnimation animateIn="fadeInUp" delay={500}>
@@ -228,10 +261,18 @@ class IndexPage extends React.Component {
                   <p>in Tegucigalpa, Honduras</p>
                 </div>
               </ScrollAnimation>
+              <ScrollAnimation animateIn="fadeInUp" delay={500}>
+                <div className="additional">
+                  <p>
+                    My main focus is the development of top-tier user
+                    experiences and highly effective applications.
+                  </p>
+                </div>
+              </ScrollAnimation>
             </div>
 
             <ScrollAnimation
-              className="profession"
+              className="profession outline"
               animateIn="fadeInUp"
               delay={1000}
             >
@@ -241,11 +282,11 @@ class IndexPage extends React.Component {
               </div>
             </ScrollAnimation>
           </div>
-          <div className="block light" id="educ">
+          <div className="block " id="educ">
             <Subheading name="Education" number="01"></Subheading>
             {renderEduc}
           </div>
-          <div className="block prim" id="skills">
+          <div className="block " id="skills">
             <Subheading name="Skills" number="02"></Subheading>
             <div className="col-block">
               <div>
@@ -265,16 +306,24 @@ class IndexPage extends React.Component {
             </div>
           </div>
 
-          <div className="block light" id="portfolio">
+          <div className="block " id="portfolio">
             <Subheading name="Portfolio" number="03"></Subheading>
             {renderPorfolio}
           </div>
-          <div className="block prim" id="profile">
+          <div className="block " id="profile">
             <Subheading name="About" number="04"></Subheading>
 
             <div className="col-block25">
               <div className="light" id="general">
                 {renderGeneral}
+                <div>
+                  <span className="s3">Social Network</span>
+                  <h3 id="socials">
+                    
+                    <Icon type="linkedin" />
+                    <Icon type="instagram" />
+                  </h3>
+                </div>
               </div>
               <span className="quote" id="description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -309,7 +358,7 @@ class IndexPage extends React.Component {
           </div>
         </div>
         {this.state.showMenu ? (
-          <div className="menu animated fadeInOut">
+          <div className="menu animated fadeIn">
             {renderMenus}
             <button className="close-bt" onClick={this.hideNav}>
               Close
@@ -330,7 +379,7 @@ const Subheading = ({ name, number }) => {
     <div className="hidden">
       <div className="sub">
         <ScrollAnimation animateIn="fadeInLeft">
-          <h1 className="backing">{number}</h1>
+          <span className="backing outline">{number}</span>
         </ScrollAnimation>
         <ScrollAnimation animateIn="fadeInUp">
           <h2 className="heading">{name}</h2>
@@ -498,9 +547,6 @@ const general = [
     name: "Nacido en",
     info: "Tegucigalpa, Honduras",
   },
-  {
-    name: "Redes Sociales",
-  },
 ]
 
 const general_en = [
@@ -515,9 +561,6 @@ const general_en = [
   {
     name: "Born in",
     info: "Tegucigalpa, Honduras",
-  },
-  {
-    name: "Social Network",
   },
 ]
 
