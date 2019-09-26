@@ -12,15 +12,15 @@ import SEO from "../components/seo"
 import "antd/dist/antd.css"
 import "../styles/style.scss"
 
-import node_logo from "../images/node.png"
-import firebase_logo from "../images/firebase.png"
-import sqls_logo from "../images/sql-server.svg"
-import fireb from "../images/fireb.png"
 import spg from "../images/spg.png"
 import pinewood from "../images/pinewood.png"
 import anting from "../images/anting.png"
-import react_logo from "../images/react.svg"
 import morazan from "../images/morazan.png"
+
+import tech_img from "../images/techs.png"
+import tech1 from "../images/tech1.png"
+import tech2 from "../images/tech2.png"
+import tech3 from "../images/tech3.png"
 
 class IndexPage extends React.Component {
   constructor(props) {
@@ -61,7 +61,9 @@ class IndexPage extends React.Component {
           animateOut="fadeOutUp"
           delay={i * 100}
         >
-          <span>{doc}</span>
+          <a onClick={this.hideNav} href={doc.href}>
+            {doc.name}
+          </a>
         </ScrollAnimation>
       )
     })
@@ -84,10 +86,12 @@ class IndexPage extends React.Component {
       }
 
       return (
-        <div className="ind-skill">
-          <h3>{doc.name}</h3>
-          <div className="circles">{circles}</div>
-        </div>
+        <ScrollAnimation animateIn="fadeIn">
+          <div className="ind-skill">
+            <h3>{doc.name}</h3>
+            <div className="circles">{circles}</div>
+          </div>
+        </ScrollAnimation>
       )
     })
 
@@ -244,7 +248,7 @@ class IndexPage extends React.Component {
         <img className="graphic" src="https://bit.ly/2lu2k76"></img>
 */}
         <div className="graphic"></div>
-        <div className="main-area">
+        <div className="main-area" id="home">
           <div className="num-obj">
             <div className="number">00</div>
           </div>
@@ -293,15 +297,27 @@ class IndexPage extends React.Component {
                 <span className="s2">Programming Expertise</span>
                 {renderSkills}
               </div>
-              <div className="light" id="softskills">
-                <span className="s2">Soft Skills</span>
-                <div id="softs"> {renderSoft}</div>
-              </div>
+              <ScrollAnimation animateIn="fadeInLeft">
+                <div className="light" id="softskills">
+                  <span className="s2">Soft Skills</span>
+                  <div id="softs"> {renderSoft}</div>
+                </div>
+              </ScrollAnimation>
             </div>
+
             <div className="col-block full-row">
               <div>
                 <span className="s2">Tools & Technologies</span>
-                <div id="techs">{renderTechnologies}</div>
+                {/* <div id="techs">{renderTechnologies}</div>*/}
+                <ScrollAnimation animateIn="fadeInDown">
+                  <img className="tech-img" src={tech1}></img>
+                </ScrollAnimation>
+                <ScrollAnimation animateIn="fadeInDown" delay={200}>
+                  <img className="tech-img" src={tech2}></img>
+                </ScrollAnimation>
+                <ScrollAnimation animateIn="fadeInDown" delay={400}>
+                  <img className="tech-img" src={tech3}></img>
+                </ScrollAnimation>
               </div>
             </div>
           </div>
@@ -314,27 +330,82 @@ class IndexPage extends React.Component {
             <Subheading name="About" number="04"></Subheading>
 
             <div className="col-block25">
-              <div className="light" id="general">
-                {renderGeneral}
-                <div>
-                  <span className="s3">Social Network</span>
-                  <h3 id="socials">
-                    
-                    <Icon type="linkedin" />
-                    <Icon type="instagram" />
-                  </h3>
+              <ScrollAnimation
+                animateIn="fadeInRight"
+                animateOut="fadeOutRight"
+              >
+                <div className="light" id="general">
+                  <span className="s2"></span>
+                  {renderGeneral}
+                  <div>
+                    <span className="s3">Social Network</span>
+                    <h3 id="socials">
+                      <Icon
+                        type="linkedin"
+                        onClick={() =>
+                          window.open(
+                            "https://www.linkedin.com/in/calvin-espinoza-4396a4191",
+                            "_blank"
+                          )
+                        }
+                      />
+
+                      <Icon
+                        type="instagram"
+                        onClick={() =>
+                          window.open(
+                            "https://www.instagram.com/calvinspnz/",
+                            "_blank"
+                          )
+                        }
+                      />
+                      <Icon
+                        type="github"
+                        onClick={() =>
+                          window.open(
+                            "https://github.com/calvinespinoza",
+                            "_blank"
+                          )
+                        }
+                      />
+                    </h3>
+                  </div>
                 </div>
-              </div>
+              </ScrollAnimation>
+
               <span className="quote" id="description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Egestas sed tempus urna et pharetra pharetra massa massa
-                ultricies. Mi ipsum faucibus vitae aliquet.
+                <p>
+                  As a self-driven and passionate software developer, I
+                  prioritize awe-striking visuals and highly efficient code to
+                  provide the ultimate user experience.
+                </p>
+                <p>
+                  The enjoyment of being challenged and engaging with projects
+                  that require me to work outside my comfort and knowledge set,
+                  allows me to explore new grounds and continually learn new
+                  development techniques.
+                </p>
               </span>
             </div>
+            <ScrollAnimation animateIn="fadeInUp" id="quotations">
+              <span className="quote" id="description2">
+                <span className="quotation outline" id="quotation1">
+                  “
+                </span>
+                <p>
+                As cofounder of a local web development startup known Diamond
+                Software, I understand the pitfalls of a highly competitive
+                market and the work ethic necessary to fulfill clients’ needs.
+                </p>
+                {/*<span className="quotation outline" id="quotation2">
+                  ”
+                </span>
+                */}
+              </span>
+            </ScrollAnimation>
           </div>
 
-          <div className="block light" id="contacto">
+          <div className="block" id="contacto">
             <Subheading name="Contact" number="05"></Subheading>
             <div id="contact">
               <div className="input">
@@ -359,10 +430,7 @@ class IndexPage extends React.Component {
         </div>
         {this.state.showMenu ? (
           <div className="menu animated fadeIn">
-            {renderMenus}
-            <button className="close-bt" onClick={this.hideNav}>
-              Close
-            </button>
+            <div className="menu-div">{renderMenus}</div>
           </div>
         ) : (
           ""
@@ -372,7 +440,31 @@ class IndexPage extends React.Component {
   }
 }
 
-const menus = ["Home", "Education", "Skills", "Portfolio", "About", "Contact"]
+//const menus = ["Home", "Education", "Skills", "Portfolio", "About", "Contact"]
+
+const menus = [
+  {
+    name: "Home",
+    href: "#home",
+  },
+  {
+    name: "Education",
+    href: "#educ",
+  },
+  { name: "Skills", href: "#skills" },
+  {
+    name: "Portfolio",
+    href: "#portfolio",
+  },
+  {
+    name: "About",
+    href: "#profile",
+  },
+  {
+    name: "Contact",
+    href: "#contacto",
+  },
+]
 
 const Subheading = ({ name, number }) => {
   return (
@@ -433,11 +525,11 @@ const techs = [
 const techs2 = [
   {
     name: "Node.js",
-    img: node_logo,
+    //img: node_logo,
   },
   {
     name: "React JS",
-    img: react_logo,
+    //img: react_logo,
   },
   {
     name: "React Native",
@@ -454,11 +546,11 @@ const techs2 = [
   },
   {
     name: "Firebase",
-    img: fireb,
+    //img: fireb,
   },
   {
     name: "SQL Server",
-    img: sqls_logo,
+    //img: sqls_logo,
   },
   {
     name: "Hadoop",
@@ -478,8 +570,8 @@ const softskills = [
 const softskills_en = [
   "Integrity",
   "Teamwork",
-  "Determination",
   "Responsibility",
+  "Determination",
 ]
 
 const education = [
