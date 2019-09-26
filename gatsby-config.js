@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Calvin Espinoza`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `As a self-driven and passionate software developer, I prioritize awe-striking visuals and highly efficient code to provide the ultimate user experience.`,
     author: `@calvinespinoza`,
   },
   pathPrefix: "/resume",

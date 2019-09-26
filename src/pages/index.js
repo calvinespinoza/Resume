@@ -1,12 +1,10 @@
 import React from "react"
-import { Link } from "gatsby"
-import anime from "animejs"
-import { Icon } from "antd"
+import { Icon, message } from "antd"
 import ScrollAnimation from "react-animate-on-scroll"
 import "animate.css/animate.min.css"
+import emailjs from "emailjs-com"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
 import "antd/dist/antd.css"
@@ -17,7 +15,6 @@ import pinewood from "../images/pinewood.png"
 import anting from "../images/anting.png"
 import morazan from "../images/morazan.png"
 
-import tech_img from "../images/techs.png"
 import tech1 from "../images/tech1.png"
 import tech2 from "../images/tech2.png"
 import tech3 from "../images/tech3.png"
@@ -27,6 +24,9 @@ class IndexPage extends React.Component {
     super(props)
 
     this.state = {
+      feedback: "",
+      name: "",
+      email: "",
       elements: [],
       windowHeight: 0,
       showMenu: false,
@@ -34,6 +34,9 @@ class IndexPage extends React.Component {
 
     this.showNav = this.showNav.bind(this)
     this.hideNav = this.hideNav.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.sendFeedback = this.sendFeedback.bind(this)
   }
 
   showNav() {
@@ -47,8 +50,45 @@ class IndexPage extends React.Component {
       showMenu: false,
     })
   }
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.value })
+    //console.log(event.target.value)
+  }
 
-  componentDidMount() {}
+  handleSubmit(event) {
+    const templateId = "template_GsBO3H7z"
+
+    this.sendFeedback(templateId, {
+      message_html: this.state.feedback,
+      from_name: this.state.name,
+      reply_to: this.state.email,
+      to_name: "Calvin",
+    })
+  }
+  sendFeedback(templateId, variables) {
+    emailjs
+      .send("gmail", templateId, variables)
+      .then(res => {
+        console.log("Email successfully sent!")
+        this.setState({
+          name: "",
+          email: "",
+          feedback: "",
+        })
+        message.success("Email successfully sent!")
+      })
+      // Handle errors here however you like, or use a React error boundary
+      .catch(err =>
+        console.error(
+          "Oh well, you failed. Here some thoughts on the error that occured:",
+          err
+        )
+      )
+  }
+
+  componentDidMount() {
+    emailjs.init("user_NoRfbhvUjsdIF7QtVBhah")
+  }
 
   componentDidUpdate() {}
 
@@ -216,6 +256,7 @@ class IndexPage extends React.Component {
         <button className="nav-bt" onClick={this.showNav}></button>
 */}
 
+        {/*
         <div className="navbar-sm">
           <a className="navbar-name">Calvin</a>
           {this.state.showMenu ? (
@@ -232,12 +273,19 @@ class IndexPage extends React.Component {
             />
           )}
         </div>
-        <div className="navbar">
-          <a className="navbar-name">Calvin</a>
+        */}
 
-          <div className="navbar-area">
-            <a href="#educ">Education</a>
+        <div className="navbar">
+          {/*
+        <div className="animated fadeInLeft delay-2s navbar-name">
+        <a href="#main-area">Calvin</a>
+        </div>
+        */}
+
+          <div className="animated fadeInLeft delay-1s navbar-area">
             <a href="#skills">Skills</a>
+            <a href="#educ">Education</a>
+
             <a href="#portfolio">Portfolio</a>
             <a href="#profile">About</a>
             <a href="#contacto">Contact</a>
@@ -286,12 +334,9 @@ class IndexPage extends React.Component {
               </div>
             </ScrollAnimation>
           </div>
-          <div className="block " id="educ">
-            <Subheading name="Education" number="01"></Subheading>
-            {renderEduc}
-          </div>
+
           <div className="block " id="skills">
-            <Subheading name="Skills" number="02"></Subheading>
+            <Subheading name="Skills" number="01"></Subheading>
             <div className="col-block">
               <div>
                 <span className="s2">Programming Expertise</span>
@@ -321,7 +366,10 @@ class IndexPage extends React.Component {
               </div>
             </div>
           </div>
-
+          <div className="block " id="educ">
+            <Subheading name="Education" number="02"></Subheading>
+            {renderEduc}
+          </div>
           <div className="block " id="portfolio">
             <Subheading name="Portfolio" number="03"></Subheading>
             {renderPorfolio}
@@ -368,6 +416,15 @@ class IndexPage extends React.Component {
                           )
                         }
                       />
+                      <Icon
+                        type="mail"
+                        onClick={() =>
+                          window.open(
+                            "mailto:calvin_espinoza@hotmail.com",
+                            "_blank"
+                          )
+                        }
+                      />
                     </h3>
                   </div>
                 </div>
@@ -380,22 +437,25 @@ class IndexPage extends React.Component {
                   provide the ultimate user experience.
                 </p>
                 <p>
-                  The enjoyment of being challenged and engaging with projects
-                  that require me to work outside my comfort and knowledge set,
+                  The enjoyment of being challenged and engaged with projects
+                  that require me to work outside my comfort and knowledge set
                   allows me to explore new grounds and continually learn new
                   development techniques.
                 </p>
               </span>
             </div>
+          </div>
+          <div className="block">
             <ScrollAnimation animateIn="fadeInUp" id="quotations">
               <span className="quote" id="description2">
                 <span className="quotation outline" id="quotation1">
                   “
                 </span>
                 <p>
-                As cofounder of a local web development startup known Diamond
-                Software, I understand the pitfalls of a highly competitive
-                market and the work ethic necessary to fulfill clients’ needs.
+                  As cofounder of a local web development startup known as
+                  Diamond Software, I understand the pitfalls of a highly
+                  competitive market and the work ethic necessary to fulfill
+                  clients’ needs.
                 </p>
                 {/*<span className="quotation outline" id="quotation2">
                   ”
@@ -404,28 +464,50 @@ class IndexPage extends React.Component {
               </span>
             </ScrollAnimation>
           </div>
-
           <div className="block" id="contacto">
             <Subheading name="Contact" number="05"></Subheading>
+            <ScrollAnimation animateIn="fadeIn" delay={750}>
             <div id="contact">
               <div className="input">
-                <span className="s3">Name</span>
-                <input />
+                <span className="s3">Your Name</span>
+                <input
+                  onChange={this.handleChange("name")}
+                  value={this.state.name}
+                />
               </div>
 
               <div className="input">
-                <span className="s3">Email</span>
-                <input />
+                <span className="s3">Your Email</span>
+                <input
+                  onChange={this.handleChange("email")}
+                  value={this.state.email}
+                />
               </div>
               <div className="input textarea">
                 <span className="s3">What can I help you with?</span>
-                <textarea rows="5" />
+                <textarea
+                  rows="5"
+                  onChange={this.handleChange("feedback")}
+                  value={this.state.feedback}
+                />
               </div>
             </div>
-            <button className="dark-bt">
+            </ScrollAnimation>
+            <button className="dark-bt" onClick={this.handleSubmit}>
               {" "}
-              <span className="s3">Enviar</span>
+              <span className="s3">Send</span>
             </button>
+           
+            <span className="s4">
+            <ScrollAnimation animateIn="fadeInUp" delay={2000}>
+              or reach me directly at <strong>calvin_espinoza@hotmail.com</strong>
+              </ScrollAnimation>
+            </span>
+         
+          </div>
+
+          <div className="footer">
+            This website was made by myself using ReactJS and Gatbsy.
           </div>
         </div>
         {this.state.showMenu ? (
@@ -447,11 +529,12 @@ const menus = [
     name: "Home",
     href: "#home",
   },
+  { name: "Skills", href: "#skills" },
   {
     name: "Education",
     href: "#educ",
   },
-  { name: "Skills", href: "#skills" },
+
   {
     name: "Portfolio",
     href: "#portfolio",
@@ -595,7 +678,7 @@ const education = [
     insti: "Universidad Tecnologica Centroamericana",
     año_init: "2015",
     año_fin: "2020",
-    indice: "90.2",
+    indice: "90.0",
     descripcion: "Calificación más alta: Area de Computacion Intermedia 2018",
   },
 ]
@@ -621,7 +704,7 @@ const education_en = [
     insti: "Universidad Tecnologica Centroamericana",
     año_init: "2015",
     año_fin: "2020",
-    indice: "90.2",
+    indice: "90.0",
     descripcion: "Highest Score: Intermediate Computing 2018",
   },
 ]
