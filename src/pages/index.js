@@ -203,9 +203,9 @@ class IndexPage extends React.Component {
 
         <div className="navbar">
           <div className="nav-right">
-            <a href="#educ">Education</a>
             <a href="#skills">Skills</a>
             <a href="#portfolio">Portfolio</a>
+            <a href="#educ">Education</a>
             <a href="#profile">About</a>
             <a href="#contacto">Contact</a>
           </div>
@@ -241,12 +241,8 @@ class IndexPage extends React.Component {
               </div>
             </ScrollAnimation>
           </div>
-          <div className="block light" id="educ">
-            <Subheading name="Education" number="01"></Subheading>
-            {renderEduc}
-          </div>
           <div className="block prim" id="skills">
-            <Subheading name="Skills" number="02"></Subheading>
+            <Subheading name="Skills" number="01"></Subheading>
             <div className="col-block">
               <div>
                 <span className="s2">Programming Expertise</span>
@@ -264,10 +260,13 @@ class IndexPage extends React.Component {
               </div>
             </div>
           </div>
-
           <div className="block light" id="portfolio">
-            <Subheading name="Portfolio" number="03"></Subheading>
+            <Subheading name="Portfolio" number="02"></Subheading>
             {renderPorfolio}
+          </div>
+          <div className="block light" id="educ">
+            <Subheading name="Education" number="03"></Subheading>
+            {renderEduc}
           </div>
           <div className="block prim" id="profile">
             <Subheading name="About" number="04"></Subheading>
@@ -355,15 +354,15 @@ const data = [
   },
 
   {
+    name: "C#",
+    percent: 8,
+  },
+  {
+    name: "Typescript",
+    percent: 7,
+  },
+  {
     name: "Java",
-    percent: 7,
-  },
-  {
-    name: "C/C++",
-    percent: 7,
-  },
-  {
-    name: "Python",
     percent: 5,
   },
 ]
@@ -435,13 +434,6 @@ const softskills_en = [
 
 const education = [
   {
-    name: "Educacion Primaria Bilingüe",
-    insti: "Elvel School",
-    año_init: "2004",
-    año_fin: "2010",
-    indice: "97.6",
-  },
-  {
     name: "Educacion Secundaria Bilingüe",
     insti: "Elvel School",
     año_init: "2010",
@@ -453,20 +445,13 @@ const education = [
     name: "Ingeniería en Sistemas Computacionales",
     insti: "Universidad Tecnologica Centroamericana",
     año_init: "2015",
-    año_fin: "2020",
-    indice: "90.2",
+    año_fin: "2021",
+    indice: "90.0",
     descripcion: "Calificación más alta: Area de Computacion Intermedia 2018",
   },
 ]
 
 const education_en = [
-  {
-    name: "Elementary School Education ",
-    insti: "Elvel School",
-    año_init: "2004",
-    año_fin: "2010",
-    indice: "97.6",
-  },
   {
     name: "High School Degree",
     insti: "Elvel School",
@@ -479,8 +464,8 @@ const education_en = [
     name: "Bachelor of Software Engineering (B.SE.)",
     insti: "Universidad Tecnologica Centroamericana",
     año_init: "2015",
-    año_fin: "2020",
-    indice: "90.2",
+    año_fin: "2021",
+    indice: "90.0",
     descripcion: "Highest Score: Intermediate Computing 2018",
   },
 ]
@@ -492,7 +477,7 @@ const general = [
   },
   {
     name: "Edad",
-    info: "21 años",
+    info: "22 años",
   },
   {
     name: "Nacido en",
@@ -510,7 +495,7 @@ const general_en = [
   },
   {
     name: "Age",
-    info: "21 years old",
+    info: "22 years old",
   },
   {
     name: "Born in",
@@ -522,6 +507,13 @@ const general_en = [
 ]
 
 const portfolio = [
+  {
+    project: "Mendo",
+    description:
+      "Using Spotify's API, Mendo allows music enthusiasts to discover new artists and songs plus create fresh playlists based on their music taste.",
+    category: "Development",
+    image: mendo,
+  },
   {
     project: "Sprouting Productive Gear",
     description:
