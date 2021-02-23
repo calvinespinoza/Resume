@@ -21,6 +21,7 @@ import pinewood from "../images/pinewood.png"
 import anting from "../images/anting.png"
 import react_logo from "../images/react.svg"
 import morazan from "../images/morazan.png"
+import mendo from "../images/mendo.png"
 
 class IndexPage extends React.Component {
   constructor(props) {
